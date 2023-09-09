@@ -2,6 +2,39 @@ console.log("Завдання: 3 ==============================");
 
 // Створюємо функцію task3, в якій буде виконуватися завдання
 function task3() {
+  const promise1 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("Проміс 1 виконано");
+    }, 1000);
+  });
+
+  const promise2 = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject("Проміс 2 відхилено");
+    }, 2000);
+  });
+
+  promise1
+    .then((result) => {
+      console.log("Проміс 1: fulfilled");
+      return result;
+    })
+    .catch((error) => {
+      console.error("Проміс 1: rejected");
+      throw error;
+    });
+
+  promise2
+    .then((result) => {
+      console.log("Проміс 2: fulfilled");
+      return result;
+    })
+    .catch((error) => {
+      console.error("Проміс 2: rejected");
+    })
+    .finally(() => {
+      console.log("Завдання 3 завершено");
+    });
   // Створюємо функцію promise1, яка створює і повертає новий проміс
   // Метод new Promise приймає в якості параметра функцію (executor), яка має два параметри: resolve і reject.
   // Використовуємо setTimeout для імітації асинхронної операції, яка завершується через 1 секунду
